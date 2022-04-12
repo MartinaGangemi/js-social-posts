@@ -91,23 +91,25 @@ for (let i=0; i<post.length; ++i){
     ${singoloPost.testoPost}
     <img src="${singoloPost.immagine}" alt="" class= "mt-4">
     <div class = "d-flex justify-content-around mt-4"> 
-        <div role="button" class="like" ><b><i class="fa-solid fa-thumbs-up"></i> Mi piace</b></div>
-        <div class="new_like"> Piace a <b>${singoloPost.likes}</b> persone</div>
+        <div role="button" class="like"><b><i class="fa-solid fa-thumbs-up"></i> Mi piace</b></div>
+        <div class="new_like" id="${singoloPost.id}"> Piace a <b>${singoloPost.likes}</b> persone</div>
     </div>
     `
 
     // Milestone 3
-// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
-// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-    
-const btnLike = document.querySelectorAll(".like")
-    btnLike[i].addEventListener("click", function() {
-        btnLike[i].style.color="#6495ED"
+    // Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+    // Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+        
+    const btnLike = divElement.querySelector(".like")
+    btnLike.addEventListener("click", function() {
+        this.style.color="#6495ED"
         singoloPost.likes = singoloPost.likes+1
         console.log(singoloPost.likes)
-        const likePlus = document.querySelectorAll(".new_like")
-        likePlus[i].innerHTML = `<div class="new_like"> Piace a <b>${singoloPost.likes}</b> persone</div>`
-     });
+        const likePlus = document.getElementById(singoloPost.id)
+        likePlus.innerHTML = `<div class="new_like" id="like-counter-${singoloPost.id}"> Piace a <b>${singoloPost.likes}</b> persone</div>`
+        
+     }, {once : true});
+     
 }
 
 
