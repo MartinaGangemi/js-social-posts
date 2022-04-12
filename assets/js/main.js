@@ -1,7 +1,6 @@
 // Creiamo il nostro array di oggetti che rappresentano ciascun post. 
 // Ogni post dovrà avere le informazioni necessarie per stampare la relativa card
 
-
 const post = [
     {  
         id:1,
@@ -64,34 +63,53 @@ const post = [
     }
 ]
 
-console.log(post)
+// console.log(post)
 
 //seleziono l'elemento della DOM dove inserirò i vari post
 const indexElement = document.getElementById("post")
 
-//faccio un ciclo for per creare i vari post
-for (let i=0; i<post.length; i++){
+// Milestone 2
+// Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
+for (let i=0; i<post.length; ++i){
     const singoloPost = post[i]
+    //creo un elemento div
     divElement = document.createElement("div")
+    //al div aggiungo la sua classe
     divElement.classList.add("single_post")
     indexElement.append(divElement)
+
+
     divElement.innerHTML = `
-    <div class="d-flex align-items-center mb-4"><img src="${singoloPost.fotoAutore}" alt="" class="foto_profilo"> 
-    <div class="lh-1">
-    <b>${singoloPost.autore}</b>
-    <br>
-    <span class="font_size-s">${singoloPost.data}</span>
+    <div class="d-flex align-items-center mb-4">
+        <img src="${singoloPost.fotoAutore}" alt="" class="foto_profilo"> 
+        <div class="lh-1">
+            <b>${singoloPost.autore}</b>
+            <br>
+            <span class="font_size-s">${singoloPost.data}</span>
+        </div>
     </div>
-    </div>
-    <img src="${singoloPost.immagine}" alt="">
+    ${singoloPost.testoPost}
+    <img src="${singoloPost.immagine}" alt="" class= "mt-4">
     <div class = "d-flex justify-content-around mt-4"> 
-        <div>Mi piace</div>
-        <div> Piace a ${singoloPost.likes} persone</div>
-      </div>
+        <div role="button" class="like" ><b><i class="fa-solid fa-thumbs-up"></i> Mi piace</b></div>
+        <div class="new_like"> Piace a <b>${singoloPost.likes}</b> persone</div>
+    </div>
     `
-  
+
+    // Milestone 3
+// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+    
+const btnLike = document.querySelectorAll(".like")
+    btnLike[i].addEventListener("click", function() {
+        btnLike[i].style.color="#6495ED"
+        singoloPost.likes = singoloPost.likes+1
+        console.log(singoloPost.likes)
+        const likePlus = document.querySelectorAll(".new_like")
+        likePlus[i].innerHTML = `<div class="new_like"> Piace a <b>${singoloPost.likes}</b> persone</div>`
+     });
 }
 
 
 
-console.log(indexElement)
+ 
