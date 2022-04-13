@@ -1,4 +1,3 @@
-
 //Formattare le date in formato italiano (gg/mm/aaaa)
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -27,7 +26,7 @@ const post = [
     {
         id:2, 
         autore: "Akiruno", 
-        fotoAutore:"https://unsplash.it/50/50?image" , 
+        fotoAutore:" " , 
         data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image", 
@@ -46,8 +45,8 @@ const post = [
 
     {
         id:4, 
-        autore: "Vermillion", 
-        fotoAutore:"https://unsplash.it/50/50?image" , 
+        autore: "Vermillion Melone", 
+        fotoAutore:" " , 
         data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image", 
@@ -75,7 +74,6 @@ const post = [
     }
 ]
 
-// console.log(post)
 
 // Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 const likeId = []
@@ -93,10 +91,12 @@ for (let i=0; i<post.length; ++i){
     divElement.classList.add("single_post")
     indexElement.append(divElement)
 
-
+    
     divElement.innerHTML = `
     <div class="d-flex align-items-center mb-4">
-        <img src="${singoloPost.fotoAutore}" alt="" class="foto_profilo"> 
+        <div class= "avatar me-3" >
+            <img src="${singoloPost.fotoAutore}" alt="" class="foto_profilo">
+        </div> 
         <div class="lh-1">
             <b>${singoloPost.autore}</b>
             <br>
@@ -112,18 +112,9 @@ for (let i=0; i<post.length; ++i){
     `
 
     // Milestone 3
-    // Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
-    
-    // const btnLike = divElement.querySelector(".like")
-    // btnLike.addEventListener("click", function() {
-    //     this.style.color="#6495ED"
-    //     singoloPost.likes = singoloPost.likes+1
-    //     // console.log(singoloPost.likes)
-    //     const likePlus = document.getElementById(singoloPost.id)
-    //     likePlus.innerHTML = `
-    //     <div class="new_like" id="${singoloPost.id}"> 
-    //         Piace a <b>${singoloPost.likes}</b> persone
-    //     </div>`
+    // Al click su un pulsante "Mi Piace" di un post, 
+    // se abbiamo già cliccato dobbiamo decrementare il contatore e 
+    // cambiare il colore del bottone.
 
     const btnLike = divElement.querySelector(".like")
     btnLike.addEventListener("click", addLike)
@@ -148,14 +139,30 @@ for (let i=0; i<post.length; ++i){
             likeId.pop(singoloPost.id)
               }
 
-        
             console.log(likeId)    
         } 
-       
 
-   
-       
-    //   }, {once : true});
-     
+        // Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
+        
+        const userName = singoloPost.autore;
+        const arrName = userName.split(" ");
+    
+        for (var k = 0; k < arrName.length; k++) {
+            arrName[k] = arrName[k].charAt(0).toUpperCase()
+        }
+    
+        const firstLetter = arrName.join(" ");
+
+        if(singoloPost.fotoAutore === " " ){
+        const immagineProfilo = divElement.querySelector(".avatar")
+        immagineProfilo.classList.add("nopicture")
+        
+        immagineProfilo.innerHTML=`
+        <span">
+        ${firstLetter}
+        </span>`
+        }     
+      
 }
 
+    

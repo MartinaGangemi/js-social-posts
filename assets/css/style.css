@@ -31,3 +31,16 @@ body{
 .blu{
     color:#6495ED ;
 }
+
+.nopicture{
+    background-color: orange;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
