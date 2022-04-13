@@ -1,11 +1,24 @@
+
+//Formattare le date in formato italiano (gg/mm/aaaa)
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+    const date = randomNumber(1,28)
+    const month = randomNumber(1,12)
+    const year = randomNumber(2020,2022)
+    const dataAmericana = `${month}/${date}/${year}`
+    const dataEuropea = `${date}/${month}/${year}`
+
+
 // Creiamo il nostro array di oggetti che rappresentano ciascun post. 
 // Ogni post dovrà avere le informazioni necessarie per stampare la relativa card
+
 const post = [
     {  
         id:1,
         autore: "Franco", 
         fotoAutore:"https://unsplash.it/50/50?image" , 
-        data: "03/18/2022", 
+        data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image",
         likes:56
@@ -15,7 +28,7 @@ const post = [
         id:2, 
         autore: "Akiruno", 
         fotoAutore:"https://unsplash.it/50/50?image" , 
-        data: "03/13/2022", 
+        data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image", 
         likes:87
@@ -25,7 +38,7 @@ const post = [
         id:3, 
         autore: "Niko", 
         fotoAutore:"https://unsplash.it/50/50?image" , 
-        data: "03/12/2022", 
+        data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image", 
         likes:45
@@ -35,7 +48,7 @@ const post = [
         id:4, 
         autore: "Vermillion", 
         fotoAutore:"https://unsplash.it/50/50?image" , 
-        data: "03/08/2022", 
+        data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image", 
         likes: 44
@@ -45,7 +58,7 @@ const post = [
         id:5,
         autore: "Peppe", 
         fotoAutore:"https://unsplash.it/50/50?image" , 
-        data: "03/04/2022", 
+        data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image",
         likes:80
@@ -55,7 +68,7 @@ const post = [
         id:6,
         autore: "Flavio", 
         fotoAutore:"https://unsplash.it/50/50?image" , 
-        data: "03/04/2022", 
+        data: dataEuropea, 
         testoPost:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, est!", 
         immagine:"https://unsplash.it/500/300?image",
         likes:80
@@ -146,7 +159,3 @@ for (let i=0; i<post.length; ++i){
      
 }
 
-
-
-const date2 = new Date('18-08-2022');
-console.log(date2)
