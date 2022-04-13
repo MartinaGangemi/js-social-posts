@@ -1,6 +1,5 @@
 // Creiamo il nostro array di oggetti che rappresentano ciascun post. 
 // Ogni post dovrà avere le informazioni necessarie per stampare la relativa card
-
 const post = [
     {  
         id:1,
@@ -65,6 +64,9 @@ const post = [
 
 // console.log(post)
 
+// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+const likeId = []
+
 //seleziono l'elemento della DOM dove inserirò i vari post
 const indexElement = document.getElementById("post")
 
@@ -98,20 +100,53 @@ for (let i=0; i<post.length; ++i){
 
     // Milestone 3
     // Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
-    // Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-        
+    
+    // const btnLike = divElement.querySelector(".like")
+    // btnLike.addEventListener("click", function() {
+    //     this.style.color="#6495ED"
+    //     singoloPost.likes = singoloPost.likes+1
+    //     // console.log(singoloPost.likes)
+    //     const likePlus = document.getElementById(singoloPost.id)
+    //     likePlus.innerHTML = `
+    //     <div class="new_like" id="${singoloPost.id}"> 
+    //         Piace a <b>${singoloPost.likes}</b> persone
+    //     </div>`
+
     const btnLike = divElement.querySelector(".like")
-    btnLike.addEventListener("click", function() {
-        this.style.color="#6495ED"
-        singoloPost.likes = singoloPost.likes+1
-        console.log(singoloPost.likes)
-        const likePlus = document.getElementById(singoloPost.id)
-        likePlus.innerHTML = `<div class="new_like" id="like-counter-${singoloPost.id}"> Piace a <b>${singoloPost.likes}</b> persone</div>`
+    btnLike.addEventListener("click", addLike)
+        function addLike (){
+           this.classList.toggle("blu")
+            let likePlus = document.getElementById(singoloPost.id)
+           
+            if (this.classList.contains("blu")) {
+                singoloPost.likes= singoloPost.likes+1
+            
+            likePlus.innerHTML = `
+            <div class="new_like" id="${singoloPost.id}"> 
+                Piace a <b>${singoloPost.likes}</b> persone
+            </div>`
+            likeId.push(singoloPost.id)
+            } else {
+                singoloPost.likes= singoloPost.likes-1
+                likePlus.innerHTML = `
+            <div class="new_like" id="${singoloPost.id}"> 
+                Piace a <b>${singoloPost.likes}</b> persone
+            </div>`
+            likeId.pop(singoloPost.id)
+              }
+
         
-     }, {once : true});
+            console.log(likeId)    
+        } 
+       
+
+   
+       
+    //   }, {once : true});
      
 }
 
 
 
- 
+const date2 = new Date('18-08-2022');
+console.log(date2)

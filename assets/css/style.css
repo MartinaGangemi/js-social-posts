@@ -22,10 +22,12 @@ body{
     background-color: white;
     margin-top: 2rem;
     padding: 1rem;
-
 }
 
 .font_size-s{
     font-size: 0.8rem;
 }
 
+.blu{
+    color:#6495ED ;
+}
